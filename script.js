@@ -41,7 +41,6 @@ siginBtn.addEventListener("click", function (e) {
   } else {
     passMsg.innerText = "";
     passMsg.classList.remove("invalid");
-    ifSendData = true;
   }
   //   equal username & password
   if (userValue == passValue) {
