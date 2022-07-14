@@ -4,12 +4,12 @@ const userMsg = document.querySelector(".user-msg");
 // password
 const passInput = document.querySelector(".pass-input");
 const passMsg = document.querySelector(".pass-msg");
-// Signin
-const siginBtn = document.querySelector(".signin-btn");
-const signInMsg = document.querySelector(".signin-msg");
+// login
+const loginBtn = document.querySelector(".login-btn");
+const loginMsg = document.querySelector(".login-msg");
 
 // functions & conditions
-siginBtn.addEventListener("click", function (e) {
+loginBtn.addEventListener("click", function (e) {
   e.preventDefault();
   //   variables
   const userValue = userInput.value;
@@ -62,8 +62,8 @@ siginBtn.addEventListener("click", function (e) {
       headers: headers,
     }).then((response) => {
       if (response.ok) {
-        signInMsg.innerText = "You Signed in successfully";
-        signInMsg.classList.add("valid");
+        loginMsg.innerText = "You Signed in successfully";
+        loginMsg.classList.add("valid");
       }
     });
   }
