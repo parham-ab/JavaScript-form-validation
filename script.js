@@ -19,6 +19,7 @@ loginBtn.addEventListener("click", function (e) {
   if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,3}$/i.test(userValue)) {
     userMsg.innerText = "Please enter a valid Email !";
     userMsg.classList.add("invalid");
+    userMsg.classList.add("animate__animated", "animate__shakeX");
     ifSendData = false;
   } else {
     userMsg.innerText = "";
@@ -29,6 +30,7 @@ loginBtn.addEventListener("click", function (e) {
   if (passValue.length === 0) {
     passMsg.innerText = "Please enter a password";
     passMsg.classList.add("invalid");
+    passMsg.classList.add("animate__animated", "animate__shakeX");
     ifSendData = false;
   } else if (passValue.startsWith(" ")) {
     passMsg.innerText = "Password cant start with space !";
@@ -62,8 +64,26 @@ loginBtn.addEventListener("click", function (e) {
       headers: headers,
     }).then((response) => {
       if (response.ok) {
-        loginMsg.innerText = "You Signed in successfully";
+        loginMsg.innerText = "You Logged in successfully";
         loginMsg.classList.add("valid");
+        loginMsg.classList.add("animate__animated", "animate__backInDown");
+        // swal toast
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
+        });
+
+        Toast.fire({
+          icon: "success",
+          title: "Logged in successfully",
+        });
       }
     });
   }

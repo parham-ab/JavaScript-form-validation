@@ -7,6 +7,8 @@
   box-sizing: border-box;
   user-select: none;
   outline: none;
+}
+body {
   font-family: "Quicksand", sans-serif;
   font-family: "Rubik", sans-serif;
 }
