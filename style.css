@@ -73,6 +73,28 @@ input {
 .login-container {
   margin-top: 50px;
 }
+.pass-container {
+  position: relative;
+}
+.pass-input {
+  padding-right: 30px;
+}
+.password-toggle {
+  position: absolute;
+  top: 50%; 
+  right: 55px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #d6d6d6;
+}
+.password-toggle-hasError {
+  position: absolute;
+  top: 30%;
+  right: 55px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #d6d6d6;
+}
 /* valid condition */
 .valid {
   background-color: rgb(50, 141, 50);
@@ -106,7 +128,6 @@ input {
     width: 300px;
   }
 }
-/* ------------ */
 canvas {
   display: block;
   vertical-align: bottom;

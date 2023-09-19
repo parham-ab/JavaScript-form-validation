@@ -4,6 +4,9 @@ const userMsg = document.querySelector(".user-msg");
 // password
 const passInput = document.querySelector(".pass-input");
 const passMsg = document.querySelector(".pass-msg");
+const passwordToggle = document.querySelector(".password-toggle");
+// icon
+const showPassIcon = document.querySelector(".fa-eye-slash");
 // login
 const loginBtn = document.querySelector(".login-btn");
 const loginMsg = document.querySelector(".login-msg");
@@ -31,6 +34,10 @@ loginBtn.addEventListener("click", function (e) {
     passMsg.innerText = "Please enter a password";
     passMsg.classList.add("invalid");
     passMsg.classList.add("animate__animated", "animate__shakeX");
+    showPassIcon.classList.replace(
+      "password-toggle",
+      "password-toggle-hasError"
+    );
     ifSendData = false;
   } else if (passValue.startsWith(" ")) {
     passMsg.innerText = "Password cant start with space !";
@@ -46,7 +53,23 @@ loginBtn.addEventListener("click", function (e) {
   }
   //   equal username & password
   if (userValue == passValue) {
-    alert("Username and password cant be equal !");
+    // alert("Username and password cant be equal !");
+     // swal toast
+     const Toast = Swal.mixin({
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener("mouseenter", Swal.stopTimer);
+        toast.addEventListener("mouseleave", Swal.resumeTimer);
+      },
+    });
+    Toast.fire({
+      icon: "error",
+      title: "Username and password cant be equal !",
+    });
     ifSendData = false;
   }
   //   true conditions
@@ -79,13 +102,25 @@ loginBtn.addEventListener("click", function (e) {
             toast.addEventListener("mouseleave", Swal.resumeTimer);
           },
         });
-
         Toast.fire({
           icon: "success",
           title: "Logged in successfully",
         });
       }
     });
+  }
+});
+// Add a click event listener to the password toggle icon
+passwordToggle.addEventListener("click", function () {
+  // Toggle the password field's type attribute between "password" and "text"
+  if (passInput.type === "password") {
+    passInput.type = "text";
+    passwordToggle.classList.remove("fa-eye-slash");
+    passwordToggle.classList.add("fa-eye");
+  } else {
+    passInput.type = "password";
+    passwordToggle.classList.remove("fa-eye");
+    passwordToggle.classList.add("fa-eye-slash");
   }
 });
 // ------------
